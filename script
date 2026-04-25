@@ -1,1 +1,15 @@
+-- Crear la tabla de Libros (Requerimiento de Persistencia)
+CREATE TABLE Libros (
+    ID_Libro INT PRIMARY KEY IDENTITY(1,1), -- Llave primaria [cite: 66]
+    Titulo VARCHAR(100) NOT NULL,
+    Autor VARCHAR(100) NOT NULL,
+    Editorial VARCHAR(50),
+    Anio INT,
+    Estado VARCHAR(20) DEFAULT 'Disponible' -- Regla de negocio [cite: 228]
+);
 
+-- Crear la tabla de Usuarios [cite: 212]
+CREATE TABLE Usuarios (
+    ID_Usuario INT PRIMARY KEY IDENTITY(1,1),
+    Nombre VARCHAR(100) NOT NULL
+);
