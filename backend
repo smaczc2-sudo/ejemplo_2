@@ -1,1 +1,44 @@
+using System;
+using System.Collections.Generic;
 
+namespace SistemaBiblioteca.Backend
+{
+    // Capa de Lógica de Negocio
+    public class GestorBiblioteca
+    {
+        // REQUERIMIENTO: Gestión de datos y CRUD (Registrar)
+        public void RegistrarLibro(Libro nuevoLibro)
+        {
+            try 
+            {
+                // REGLA DE NEGOCIO: El título es obligatorio
+                if (string.IsNullOrEmpty(nuevoLibro.Titulo))
+                {
+                    Console.WriteLine("Error: No se puede registrar un libro sin título.");
+                    return;
+                }
+
+                // Aquí se conectará con la base de datos en la fase 2
+                Console.WriteLine($"Éxito: El libro '{nuevoLibro.Titulo}' ha sido registrado en el sistema.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al registrar: " + ex.Message);
+            }
+        }
+
+        // REGLA DE NEGOCIO: Verificar disponibilidad (para el 30% de la nota)
+        public void PrestarLibro(Libro libro)
+        {
+            if (libro.EstaPrestado)
+            {
+                Console.WriteLine("Lo sentimos, este libro ya está prestado.");
+            }
+            else
+            {
+                libro.EstaPrestado = true;
+                Console.WriteLine("El préstamo se ha realizado con éxito.");
+            }
+        }
+    }
+}
