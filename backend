@@ -1,33 +1,25 @@
-using System;
-using System.Collections.Generic;
-
 namespace SistemaBiblioteca.Backend
 {
-    public class GestorBiblioteca
+    // Requerimiento: Uso de clases y objetos (Entidad Principal)
+    public class Libro
     {
-        // Requerimiento: Gestión de datos y CRUD (Create)
-        public void RegistrarLibro(Libro nuevoLibro)
-        {
-            // Aquí es donde el backend se conecta con la base de datos
-            // Por ahora, simularemos la inserción para entender la lógica
-            
-            try 
-            {
-                // REGLA DE NEGOCIO: Validamos que el título no esté vacío
-                if (string.IsNullOrEmpty(nuevoLibro.Titulo))
-                {
-                    Console.WriteLine("Error: El título es obligatorio.");
-                    return;
-                }
+        // Requerimiento: Encapsulamiento y Propiedades
+        public string Titulo { get; set; }
+        public string Autor { get; set; }
+        public string Editorial { get; set; }
+        public int Anio { get; set; }
+        
+        // Regla de negocio: Controlar estado del libro
+        public bool EstaPrestado { get; set; }
 
-                // En un sistema real, aquí usarías ADO.NET para enviar 
-                // el comando INSERT a SQL Server.
-                Console.WriteLine($"Éxito: El libro '{nuevoLibro.Titulo}' ha sido registrado.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Hubo un error al registrar: " + ex.Message);
-            }
+        // Constructor para inicializar el objeto Libro
+        public Libro(string titulo, string autor, string editorial, int anio)
+        {
+            Titulo = titulo;
+            Autor = autor;
+            Editorial = editorial;
+            Anio = anio;
+            EstaPrestado = false; 
         }
     }
 }
