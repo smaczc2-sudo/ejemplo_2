@@ -1,33 +1,29 @@
 using System;
-using System.Collections.Generic;
 
 namespace SistemaBiblioteca.Backend
 {
-    public class GestorBiblioteca
+    [cite_start]// REQUERIMIENTO: Uso de clases y objetos para representar la entidad principal [cite: 78, 213]
+    public class Libro
     {
-        // Requerimiento: Gestión de datos y CRUD (Create)
-        public void RegistrarLibro(Libro nuevoLibro)
-        {
-            // Aquí es donde el backend se conecta con la base de datos
-            // Por ahora, simularemos la inserción para entender la lógica
-            
-            try 
-            {
-                // REGLA DE NEGOCIO: Validamos que el título no esté vacío
-                if (string.IsNullOrEmpty(nuevoLibro.Titulo))
-                {
-                    Console.WriteLine("Error: El título es obligatorio.");
-                    return;
-                }
+        // REQUERIMIENTO: Encapsulamiento mediante el uso de propiedades { get; set; } [cite: 79, 80]
+        [cite_start]// Estos atributos corresponden a la Variante 2: Sistema de Biblioteca [cite: 218]
+        public string Titulo { get; set; }
+        public string Autor { get; set; }
+        public string Editorial { get; set; }
+        public int Anio { get; set; }
+        
+        [cite_start]// REGLA DE NEGOCIO: Controlar si el ejemplar está disponible o prestado [cite: 228]
+        public bool EstaPrestado { get; set; }
 
-                // En un sistema real, aquí usarías ADO.NET para enviar 
-                // el comando INSERT a SQL Server.
-                Console.WriteLine($"Éxito: El libro '{nuevoLibro.Titulo}' ha sido registrado.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Hubo un error al registrar: " + ex.Message);
-            }
+        // Constructor: Método especial para inicializar un nuevo objeto Libro
+        public Libro(string titulo, string autor, string editorial, int anio)
+        {
+            Titulo = titulo;
+            Autor = autor;
+            Editorial = editorial;
+            Anio = anio;
+            [cite_start]// Al registrarse, el libro inicia por defecto como "Disponible" [cite: 211]
+            EstaPrestado = false; 
         }
     }
 }
